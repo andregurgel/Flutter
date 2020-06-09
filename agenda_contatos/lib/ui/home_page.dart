@@ -1,4 +1,5 @@
 import 'package:agenda_contatos/helpers/contact_helper.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,26 +11,41 @@ class _HomePageState extends State<HomePage> {
 
   ContactHelper helper = ContactHelper();
 
+  List<Contact> contacts = List();
 
   @override
   void initState() {
     super.initState();
-
-    /*Contact c = Contact();
-    c.name = "Andre Gurgel";
-    c.email = "andreggurgel@gmail.com";
-    c.phone = "84996737405";
-    c.img = "imgtest";
-
-    helper.saveContact(c);
-
     helper.getAllContacts().then((list){
-      print(list);
-    });*/
+      setState(() {
+        contacts = list;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Contados"),
+        backgroundColor: Colors.red,
+        centerTitle: true,
+      ),
+      backgroundColor: Colors.white,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+      ),
+      body: ListView.builder(
+          padding: EdgeInsets.all(10),
+          itemCount: contacts.length,
+          itemBuilder: (context, index){
+            
+          }
+      ),
+    );
   }
 }
